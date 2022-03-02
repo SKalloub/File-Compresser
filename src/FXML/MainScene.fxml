@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="784.0" stylesheets="@MainScenest.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXML.MainSceneController">
+   <children>
+      <JFXTabPane layoutX="-1.0" prefHeight="466.0" prefWidth="784.0">
+         <tabs>
+            <Tab text="Encode Page">
+               <content>
+                  <AnchorPane id="Pane" fx:id="Pane" minHeight="0.0" minWidth="0.0" onDragDetected="#handle" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: White;">
+                     <children>
+                        <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="292.0" layoutY="130.0">
+                           <image>
+                              <Image url="@../images/tomod.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="185.0" layoutY="66.0" prefHeight="64.0" prefWidth="413.0" text="DRAG &amp; DROP FILES HERE" textFill="#345479">
+                           <font>
+                              <Font name="System Bold" size="33.0" />
+                           </font>
+                        </Label>
+                        <JFXButton fx:id="browsebtn" layoutX="14.0" layoutY="375.0" onAction="#onClick" text="Browse File?">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <Label fx:id="filename" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="313.0" prefHeight="18.0" prefWidth="784.0">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <JFXButton fx:id="compressbtn" buttonType="RAISED" layoutX="419.0" layoutY="362.0" onAction="#onCompress" prefHeight="49.0" prefWidth="162.0" ripplerFill="WHITE" style="-fx-background-color: #345479;" text="COMPRESS" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="decompressbtn" buttonType="RAISED" layoutX="599.0" layoutY="362.0" onAction="#onDecompress" prefHeight="49.0" prefWidth="162.0" ripplerFill="WHITE" style="-fx-background-color: #345479;" text="DECOMPRESS" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </JFXButton>
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="hufftab" disable="true" text="Huffman Code">
+               <content>
+                  <AnchorPane fx:id="huffpane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+            <Tab fx:id="headertab" disable="true" text="Header">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: White;">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="Extension Length:" textFill="#6c1717">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="exlength" layoutX="208.0" layoutY="11.0" prefHeight="37.0" prefWidth="575.0" text="3 (1 byte) " textFill="#2b3754">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="58.0" text="Extension:" textFill="#6c1717">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="ex" layoutX="133.0" layoutY="56.0" prefHeight="37.0" prefWidth="575.0" text="png (3 bytes)" textFill="#2b3754">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="109.0" text="Original Size:" textFill="#6c1717">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="ogsize" layoutX="158.0" layoutY="106.0" prefHeight="37.0" prefWidth="575.0" text="92432934239 (8 bytes) " textFill="#2b3754">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="154.0" text="Tree (Post Order):" textFill="#6c1717">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="postorder" layoutX="14.0" layoutY="203.0" prefHeight="38.0" prefWidth="750.0" text="1a01b10b010b0b010b0b010b10b10b01b1b010b01b01b01b0b" />
+                        <Label layoutX="14.0" layoutY="250.0" text="Actual Binary traversal:" textFill="#6c1717">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="postorderbin" layoutX="14.0" layoutY="278.0" prefHeight="38.0" prefWidth="750.0" text="1a01b10b010b0b010b0b010b10b10b01b1b010b01b01b01b0b" />
+                        <Label layoutX="14.0" layoutY="349.0" text="Total:" textFill="#6c1717">
+                           <font>
+                              <Font name="System Bold" size="34.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="total" layoutX="120.0" layoutY="349.0" prefHeight="37.0" prefWidth="575.0" text="34 bytes" textFill="#2b3754">
+                           <font>
+                              <Font name="System Bold" size="34.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totaltree" layoutX="208.0" layoutY="151.0" prefHeight="37.0" prefWidth="575.0" text="22 bytes" textFill="#2b3754">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="sttab" disable="true" text="Statistics">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: White;">
+                     <children>
+                        <BarChart fx:id="stChart" layoutX="14.0" layoutY="19.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="yAxis" side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                        <Label layoutX="514.0" layoutY="37.0" text="Original Size:" textFill="#6c1717">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="stOGSize" layoutX="639.0" layoutY="32.0" prefHeight="37.0" prefWidth="575.0" text="2342352 byte" textFill="#2b3754">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="514.0" layoutY="75.0" text="Size After:" textFill="#6c1717">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="srSizeAfter" layoutX="639.0" layoutY="70.0" prefHeight="37.0" prefWidth="575.0" text="2342352 byte" textFill="#2b3754">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="528.0" layoutY="123.0" text="Compression rate:" textFill="#311919">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="stCR" layoutX="693.0" layoutY="118.0" prefHeight="38.0" prefWidth="90.0" text="23.42%" textFill="#034fff">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="514.0" layoutY="219.0" text="Header Size:" textFill="#6c1717">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="stHDSize" layoutX="639.0" layoutY="214.0" prefHeight="37.0" prefWidth="575.0" text="2342352 byte" textFill="#2b3754">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="514.0" layoutY="252.0" text="distnict chars:" textFill="#6c1717">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="stdisChars" layoutX="639.0" layoutY="247.0" prefHeight="37.0" prefWidth="575.0" text="2342352 byte" textFill="#2b3754">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </JFXTabPane>
+   </children>
+</AnchorPane>
